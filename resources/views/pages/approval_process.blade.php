@@ -41,10 +41,10 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <form method="post" action="{{ route('updateSpecification') }}" autocomplete="off" class="form-horizontal">
+        <form method="post" action="{{ route('approval_proyect') }}" autocomplete="off" class="form-horizontal">
           @csrf
           @method('post')
-          <input type="hidden" name="Id_P" value="{{$Id_P}}" disabled>
+          <input type="hidden" name="Id_P" value="{{$Id_P}}">
           <div class="card ">
             <div class="card-header card-header-primary">
               <h4 class="card-title">{{ __('Info Project') }}</h4>
@@ -121,7 +121,6 @@
                   </div>
                 </div>
               </div>
-
               <h3>Fabrication</h3>
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Team Involved') }}</label>
@@ -164,7 +163,7 @@
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
                 <div class="col-sm-7">
-                  <input class="form-control" name="F_Approved_By" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->F_Approved}}" disabled>
+                  <input class="form-control" name="F_Approved_By" type="text" placeholder="{{ __('Approval project') }}" value="{{$resultproducto[0]->F_Approved}}" disabled>
                 </div>
               </div>
               <h3>Assembling</h3>
@@ -209,25 +208,27 @@
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
                 <div class="col-sm-7">
-                  <input class="form-control" name="A_Approved_By" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->A_Approved}}" disabled>
+                  <input class="form-control" name="A_Approved_By" type="text" placeholder="{{ __('Approval project') }}" value="{{$resultproducto[0]->A_Approved}}" disabled>
                 </div>
               </div>
-
-<h3>Quality Control Approval</h3>
-<div class="row">
-  <label class="col-sm-2 col-form-label">{{ __('Identified Defects/ Issues:') }}</label>
-  <div class="col-sm-7">
-    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}" disabled>
-      <input class="form-control" name="F_Defects" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->F_Defects}}" disabled>
-    </div>
-  </div>
-</div>
-
+              <h3>Quality Control Approval</h3>
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1">Notes</label>
+                    <textarea class="form-control" name="text_area" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                <div class="col-sm-7">
+                  <input class="form-control" name="Q_Approved_By" type="text" placeholder="{{ __('Employe Name') }}" value="{{$resultproducto[0]->A_Approved}}" required>
+                </div>
+              </div>
             </div>
-
-
             <div class="card-footer ml-auto mr-auto">
-              <button type="submit" class="btn btn-primary">{{ __('Update Specification') }}</button>
+              <button type="submit" class="btn btn-primary">{{ __('Approval project') }}</button>
             </div>
           </div>
         </form>
@@ -238,11 +239,4 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('js/production_phases.js') }}" disabled></script>
-<script>
-$(document).ready(function(){
-
-
-
-});
-</script>
 @endsection

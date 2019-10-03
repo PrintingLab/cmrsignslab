@@ -71,7 +71,7 @@
                 <span class="sidebar-normal">{{ __('By Approved') }} </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'approved' ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('Approved') }}">
                 <span class="sidebar-normal"> {{ __('Approvedt') }} </span>
               </a>

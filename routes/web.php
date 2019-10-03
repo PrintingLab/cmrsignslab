@@ -27,18 +27,19 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('project_info','InspectionChecklist@Paso1')->name('project_info');
   Route::get('create_project','InspectionChecklist@Paso1_Create')->name('createproject');
   Route::post('add_project','InspectionChecklist@Paso1_add')->name('addproject');
-
   Route::get('production_project','InspectionChecklist@Paso2')->name('productionproject');
   Route::get('edit_project/{ID}','InspectionChecklist@Paso2_Edit')->name('edit_project');
   Route::post('add_Specification','InspectionChecklist@Paso2_add')->name('addSpecification');
-
   Route::get('view_update_project/{ID}','InspectionChecklist@Paso2_View_update')->name('update_project');
   Route::post('updateSpecification','InspectionChecklist@Paso2_update')->name('updateSpecification');
+  Route::get('by_approved','InspectionChecklist@Paso3_ByApproved')->name('by_approved');
+  Route::get('approval_process/{ID}','InspectionChecklist@Paso3_checkApproved')->name('approval_process');
+  Route::post('approval_proyect','InspectionChecklist@Paso3_ApprovedProject')->name('approval_proyect');
+  Route::get('Approved','InspectionChecklist@Paso3_Approved')->name('Approved');
 
-Route::get('by_approved','InspectionChecklist@Paso3_ByApproved')->name('by_approved');
-Route::get('approval_process/{ID}','InspectionChecklist@Paso3_checkApproved')->name('approval_process');
-
-Route::get('Approved','InspectionChecklist@Paso3_Approved')->name('Approved');
+Route::get('view_final_details/{ID}','InspectionChecklist@Paso3_finalview')->name('view_final_details');
+Route::get('pdf_view/{ID}','InspectionChecklist@ViewPdf')->name('pdf_view');
+Route::post('ErrorConsult','InspectionChecklist@ErrorModal');
 
 
   //ejemplo

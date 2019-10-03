@@ -60,7 +60,7 @@
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Team Involved') }}</label>
                 <div class="col-sm-7">
-                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">            
+                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                     <input class="form-control" name="P_Team_Involved" type="text" placeholder="{{ __('Team Involved') }}" />
                   </div>
                 </div>
@@ -114,7 +114,6 @@
                     <input class="form-control" name="No_P_Repairs" type="text" placeholder="{{ __('Customer Name') }}" />
                   </div>
                 </div>
-
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
                   <div class="col-sm-7">
@@ -228,11 +227,4 @@
 @endsection
 @section('scripts')
 <script src="{{ asset('js/production_phases.js') }}"></script>
-<script>
-$(document).ready(function(){
-
-
-
-});
-</script>
 @endsection
