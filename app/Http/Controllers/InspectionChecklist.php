@@ -20,7 +20,7 @@ class InspectionChecklist extends Controller
   }
 
 public function DeletProject(Request $request){
-DB::table('proyect')->where('Id_Proyecto','=',$request->ID)->delete();
+DB::tablegi('proyect')->where('Id_Proyecto','=',$request->ID)->delete();
 $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->get();
 return view('pages.project_info',['consulta'=>$consulta]);
 }
