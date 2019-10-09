@@ -19,7 +19,6 @@
                   <a href="{{ route('project_info') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
                 </div>
               </div>
-
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Customer Name') }}</label>
                 <div class="col-sm-7">
@@ -28,7 +27,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <label class="col-sm-2 col-form-label" for="input-password-confirmation">{{ __('Product') }}</label>
                 <div class="col-sm-7">
@@ -61,7 +59,7 @@
 $(document).ready(function(){
   $('#datepicker').datepicker({
     uiLibrary: 'bootstrap4',
-    format: 'mm-dd-yyyy'
+    format: 'dd-mm-yyyy'
   });
 });
 </script>

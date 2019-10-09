@@ -15,7 +15,6 @@ Appadmin.controller('ProjectInfo',function($scope,$http){
   }
 
   $scope.arrary=[];
-
   $scope.ErrorView=function(id){
     $.ajax({
       url:'ErrorConsult',
@@ -35,11 +34,28 @@ Appadmin.controller('ProjectInfo',function($scope,$http){
       error:function(){
       }
     })
+  }
 
+  $scope.arrayFecha=[]
 
-
-
-
+  $scope.ConsultaFecha=function(){
+    $scope.f1=$("#datepicker1").val();
+    $scope.f2=$("#datepicker2").val();
+    $.ajax({
+      url:'ConsultaFecha',
+      type:'post',
+      data: {fecha1:$scope.f1,fecha2:$scope.f2},
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      success:function(data){
+        $scope.arrayFecha=data
+        $scope.$apply();
+        console.log($scope.arrayFecha);
+      },
+      error:function(){
+      }
+    })
   }
 
 

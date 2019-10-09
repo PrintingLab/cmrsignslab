@@ -36,12 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('approval_process/{ID}','InspectionChecklist@Paso3_checkApproved')->name('approval_process');
   Route::post('approval_proyect','InspectionChecklist@Paso3_ApprovedProject')->name('approval_proyect');
   Route::get('Approved','InspectionChecklist@Paso3_Approved')->name('Approved');
-
-Route::get('view_final_details/{ID}','InspectionChecklist@Paso3_finalview')->name('view_final_details');
-Route::get('pdf_view/{ID}','InspectionChecklist@ViewPdf')->name('pdf_view');
-Route::post('ErrorConsult','InspectionChecklist@ErrorModal');
-
-
+  Route::get('view_final_details/{ID}','InspectionChecklist@Paso3_finalview')->name('view_final_details');
+  Route::get('pdf_view/{ID}','InspectionChecklist@ViewPdf')->name('pdf_view');
+  Route::post('ErrorConsult','InspectionChecklist@ErrorModal');
+  Route::get('informe_errores','InspectionChecklist@InformeError');
+  Route::post('ConsultaFecha','InspectionChecklist@ConsultaFecha');
+  Route::post('pdf_error','InspectionChecklist@ViewPdfError')->name('pdf_error');
+Route::get('delete_project/{ID}','InspectionChecklist@DeletProject')->name('delete_project');
   //ejemplo
   /*
   Route::get('table-list', function () { return view('pages.table_list');	})->name('table');

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-//use App\Http\Controllers\PDF;
 
 class InspectionChecklist extends Controller
 {
@@ -15,13 +14,21 @@ class InspectionChecklist extends Controller
     $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->get();
     return view('pages.project_info',['consulta'=>$consulta]);
   }
+
   public function Paso1_Create(){
     return view('pages.create_project');
   }
+
+public function DeletProject(Request $request){
+DB::table('proyect')->where('Id_Proyecto','=',$request->ID)->delete();
+$consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->get();
+return view('pages.project_info',['consulta'=>$consulta]);
+}
+
   public function Paso1_add(Request $request){
     $fech=date('Y-m-d');
     $timestamp = strtotime($request->fecha);
-    $fechaFinal=date("Y-m-d", $timestamp);
+    $fechaFinal=date('Y-m-d', $timestamp);
     $user = Auth::user();
     $user=$user->name;
     DB::table('proyect')->insert([
@@ -39,6 +46,7 @@ class InspectionChecklist extends Controller
       $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->orWhere('estado','=',2)->get();
       return view('pages.production_project',['consulta'=>$consulta]);
     }
+
     public function Paso2_Edit(Request $request){
       $consulta=DB::table('proyect')
       ->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F')
@@ -47,6 +55,7 @@ class InspectionChecklist extends Controller
       $consulta_result=json_decode($consulta, true);
       return view('pages.edit_project',['consulta'=>$consulta_result,'Id_P'=>$request->ID]);
     }
+
     public function Paso2_add(Request $request){
       $fech=date('Y-m-d');
       $insert=DB::table('phases')->insert([
@@ -71,7 +80,6 @@ class InspectionChecklist extends Controller
         'A_Approved'=>"$request->A_Approved_By",
         'time'=>"$fech"
       ]);
-
       DB::table('proyect')->where('Id_Proyecto',$request->Id_P)->update(['estado'=>2]);
       $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->orWhere('estado','=',2)->get();
       return view('pages.production_project',['consulta'=>$consulta]);
@@ -95,6 +103,9 @@ class InspectionChecklist extends Controller
         'P_Team_Involved'=>"$request->P_Team_Involved",
         'Yes_hours'=>"$request->Yes_hours",
         'Yes_P_approved'=>"$request->Yes_P_approved",
+        'No_P_defects'=>"$request->No_P_defects",
+        'No_P_Repairs'=>"$request->No_P_Repairs",
+        'No_P_Date'=>"$request->No_P_Date",
         'F_Team_Involved'=>"$request->F_Team_Involved",
         'F_Materials_Used'=>"$request->F_Materials_Used",
         'F_Defects'=>"$request->F_Defects",
@@ -110,7 +121,6 @@ class InspectionChecklist extends Controller
       ]);
       $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->orWhere('estado','=',2)->get();
       return view('pages.production_project',['consulta'=>$consulta]);
-
     }
 
     public function Paso3_ByApproved(){
@@ -141,9 +151,6 @@ class InspectionChecklist extends Controller
         'name_userapproval'=>$user->name
       ]);
       DB::table('proyect')->where('Id_Proyecto',$request->Id_P)->update(['estado'=>3]);
-
-      //  $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',3)->get();
-
       $consulta=DB::table('proyect')
       ->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
       ->select('Id_Proyecto','No_P_defects','Product','Customer','employee','Fecha_F','estado')
@@ -152,7 +159,6 @@ class InspectionChecklist extends Controller
         $query->where('No_P_defects','=','""')
         ->orWhere('No_P_defects','!=','""');
       })->get();
-
       return view('pages.approved',['consulta'=>$consulta]);
     }
 
@@ -188,14 +194,43 @@ class InspectionChecklist extends Controller
       $consulta_app=DB::table('approval')->where('Id_Fk_proyect','=',$request->ID)->get();
       $consulta_A=json_decode($consulta_app);
       $pdf = \PDF::loadView('pages.pdf_view',compact('consulta_P','consulta_PH','consulta_A'));
-      return $pdf->stream('pages.pdf_view.pdf');
-      //return $pdf->download('pages.pdf_view.pdf');
+      //return $pdf->stream('pages.pdf_view.pdf');
+      return $pdf->download('pages.pdf_view.pdf');
     }
 
     public function ErrorModal(Request $request){
       $consulta_general=DB::table('phases')->where('Id_Fk_proyect','=',$request->id)->get();
       $consulta_g=json_decode($consulta_general);
       return ($consulta_g);
+    }
+
+    public function InformeError(){
+      return view('pages.informe_errores');
+    }
+
+    public function ConsultaFecha(Request $request){
+      $respuest1=$request->fecha1;
+      $respuest2=$request->fecha2;
+      $consulta=DB::table('proyect')->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
+      ->select('Id_Proyecto','Customer','Product','No_P_defects','No_P_Repairs','No_P_Date')
+      ->Where('estado','=',3)
+      ->whereBetween('Fecha_I',[$respuest1,$respuest2])
+      ->get();
+      $respuest=json_decode($consulta);
+      return($respuest);
+    }
+
+    public function ViewPdfError(Request $request){
+      $respuest1=$request->fecha1;
+      $respuest2=$request->fecha2;
+      $consulta=DB::table('proyect')->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
+      ->select('Id_Proyecto','Customer','Product','No_P_defects','No_P_Repairs','No_P_Date')
+      ->Where('estado','=',3)
+      ->whereBetween('Fecha_I',[$respuest1,$respuest2])
+      ->get();
+      $respuesta=json_decode($consulta);
+      $pdf = \PDF::loadView('pages.pdf_error',compact('respuesta','respuest1','respuest2'));
+      return $pdf->download('pages.pdf_error.pdf');
     }
 
   }

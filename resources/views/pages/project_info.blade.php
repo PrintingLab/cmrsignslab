@@ -26,7 +26,7 @@
                   </th>
                   <th>
                     Product
-                  </th>                  
+                  </th>
                   <th>
                     Project Original Due date
                   </th>
@@ -41,6 +41,8 @@
                     <td>{{$array->Product}}</td>
                     <td>{{$array->Fecha_F}}</td>
                     <td>{{$array->employee}}</td>
+                    <td> <a href="{{route('delete_project',$array->Id_Proyecto)}}" title="Delete Project"><i class="material-icons">delete</i></a>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

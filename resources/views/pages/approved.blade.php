@@ -4,10 +4,16 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
+        <div class="col-md-3">
+          <a href="informe_errores">
+          <button class="btn btn-primary btn-block" >Informes</button>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header card-header-primary">
-            <h4 class="card-title ">Projects</h4>
-            <p class="card-category"> Proyectos en el paso dos</p>
+            <h4 class="card-title ">Projects Approved</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -51,7 +57,6 @@
       </div>
     </div>
   </div>
-
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -83,12 +88,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-
         </div>
       </div>
     </div>
   </div>
-
 </div>
 @endsection
 @section('scripts')

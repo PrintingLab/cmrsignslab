@@ -105,19 +105,19 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Identified defects/Issues') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="No_P_defects" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->No_P_defects}}" disabled>
+                    <input class="form-control" name="No_P_defects" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->No_P_defects}}">
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="No_P_Repairs" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->No_P_Repairs}}" disabled>
+                    <input class="form-control" name="No_P_Repairs" type="text" placeholder="{{ __('Customer Name') }}" value="{{$resultproducto[0]->No_P_Repairs}}">
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="No_P_Date" type="text" placeholder="{{ __('4 Hours') }}" value="{{$resultproducto[0]->No_P_Date}}" disabled>
+                    <input class="form-control" name="No_P_Date" type="text" placeholder="{{ __('4 Hours') }}" value="{{$resultproducto[0]->No_P_Date}}">
                   </div>
                 </div>
               </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'productionproject', 'titlePage' => __('QUALITY INSPECTION CHECKLIST')])
+@extends('layouts.app', ['activePage' => 'productionproject', 'titlePage' => __('QUALITY CONTROL')])
 
 @section('content')
 <div class="content" ng-controller="ProjectInfo">
@@ -121,7 +121,6 @@
                   </div>
                 </div>
               </div>
-
               <h3>Fabrication</h3>
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Team Involved') }}</label>
@@ -212,8 +211,6 @@
                   <input class="form-control" name="A_Approved_By" type="text" placeholder="{{ __('Customer Name') }}" />
                 </div>
               </div>
-
-
             </div>
             <div class="card-footer ml-auto mr-auto">
               <button type="submit" class="btn btn-primary">{{ __('Add Specification') }}</button>
