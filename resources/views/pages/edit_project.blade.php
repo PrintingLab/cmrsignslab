@@ -47,7 +47,7 @@
           <input type="hidden" name="Id_P" value="{{$Id_P}}">
           <div class="card ">
             <div class="card-header card-header-primary">
-              <h4 class="card-title">{{ __('Add Project') }}</h4>
+              <h4 class="card-title">{{ __('Project Phases') }}</h4>
               <p class="card-category"></p>
             </div>
             <div class="card-body ">
@@ -61,7 +61,15 @@
                 <label class="col-sm-2 col-form-label">{{ __('Team Involved') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="P_Team_Involved" type="text" placeholder="{{ __('Team Involved') }}" />
+                    <input class="form-control" name="P_Team_Involved" type="text"  />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <label class="col-sm-2 col-form-label">{{ __('Materials Used') }}</label>
+                <div class="col-sm-7">
+                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                    <input class="form-control" name="P_Materials" type="text"  />
                   </div>
                 </div>
               </div>
@@ -90,13 +98,13 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="Yes_hours" type="text" placeholder="{{ __('4 Hours') }}" />
+                    <input class="form-control" name="Yes_P_hours" type="text"  />
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="Yes_P_approved" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="Yes_P_approved" type="text"  />
                   </div>
                 </div>
               </div>
@@ -105,19 +113,19 @@
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Identified defects/Issues') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="No_P_defects" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="No_P_defects" type="text"  />
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="No_P_Repairs" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="No_P_Repairs" type="text"  />
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="No_P_Date" type="text" placeholder="{{ __('4 Hours') }}" />
+                    <input class="form-control" name="No_P_Date" type="text"  />
                   </div>
                 </div>
               </div>
@@ -126,7 +134,7 @@
                 <label class="col-sm-2 col-form-label">{{ __('Team Involved') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="F_Team_Involved" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="F_Team_Involved" type="text"  />
                   </div>
                 </div>
               </div>
@@ -134,44 +142,77 @@
                 <label class="col-sm-2 col-form-label">{{ __('Materials Used') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="F_Materials Used" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="F_Materials" type="text"  />
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Identified Defects/ Issues:') }}</label>
+                <label class="col-sm-2 col-form-label">{{ __('Passed Quality Control') }}</label>
                 <div class="col-sm-7">
-                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="F_Defects" type="text" placeholder="{{ __('Customer Name') }}" />
+                  <div class="form-check form-check-radio form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="F_checkoption" ng-click="F_radioform('yes')"> Yes
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check form-check-radio form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="F_checkoption" ng-click="F_radioform('no')"> No
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Necessary Repairs/Improvements') }}</label>
-                <div class="col-sm-7">
-                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="F_Repairs" type="text" placeholder="{{ __('Customer Name') }}" />
+              <div ng-hide="F_yesForm">
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_Yes_P_hours" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_Yes_P_approved" type="text"  />
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
-                <div class="col-sm-7">
-                  <input class="form-control" name="F_Duration_Time" type="text" placeholder="{{ __('4 Hours') }}" />
+              <div ng-hide="F_noForm">
+                <h5>Error Form</h5>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Identified defects/Issues') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_No_P_defects" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_No_P_Repairs" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_No_P_Date" type="text"  />
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
-                <div class="col-sm-7">
-                  <input class="form-control" name="F_Approved_By" type="text" placeholder="{{ __('Customer Name') }}" />
-                </div>
-              </div>
+
+
+
+
               <h3>Assembling</h3>
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Team Involved') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="A_Team_Involved" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="A_Team_Involved" type="text"  />
                   </div>
                 </div>
               </div>
@@ -179,42 +220,73 @@
                 <label class="col-sm-2 col-form-label">{{ __('Materials Used') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="A_Materials Used" type="text" placeholder="{{ __('Customer Name') }}" />
+                    <input class="form-control" name="A_Materials" type="text"  />
                   </div>
                 </div>
               </div>
+
               <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Identified Defects/ Issues:') }}</label>
+                <label class="col-sm-2 col-form-label">{{ __('Passed Quality Control') }}</label>
                 <div class="col-sm-7">
-                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="A_Defects" type="text" placeholder="{{ __('Customer Name') }}" />
+                  <div class="form-check form-check-radio form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="A_checkoption" ng-click="A_radioform('yes')"   > Yes
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
+                  </div>
+                  <div class="form-check form-check-radio form-check-inline">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="radio" name="A_checkoption"   ng-click="A_radioform('no')" > No
+                      <span class="circle">
+                        <span class="check"></span>
+                      </span>
+                    </label>
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Necessary Repairs/Improvements') }}</label>
-                <div class="col-sm-7">
-                  <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="A_Repairs" type="text" placeholder="{{ __('Customer Name') }}" />
+              <div ng-hide="A_yesForm">
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_Yes_P_hours" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_Yes_P_approved" type="text"  />
                   </div>
                 </div>
               </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
-                <div class="col-sm-7">
-                  <input class="form-control" name="A_Duration_Time" type="text" placeholder="{{ __('4 Hours') }}" />
+              <div ng-hide="A_noForm">
+                <h5>Error Form</h5>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Identified defects/Issues') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_No_P_defects" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_No_P_Repairs" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_No_P_Date" type="text"  />
+                  </div>
                 </div>
               </div>
-              <div class="row">
-                <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
-                <div class="col-sm-7">
-                  <input class="form-control" name="A_Approved_By" type="text" placeholder="{{ __('Customer Name') }}" />
-                </div>
-              </div>
+
             </div>
             <div class="card-footer ml-auto mr-auto">
               <button type="submit" class="btn btn-primary">{{ __('Add Specification') }}</button>
             </div>
+
           </div>
         </form>
       </div>

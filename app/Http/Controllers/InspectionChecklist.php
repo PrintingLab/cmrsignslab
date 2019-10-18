@@ -20,7 +20,7 @@ class InspectionChecklist extends Controller
   }
 
 public function DeletProject(Request $request){
-DB::tablegi('proyect')->where('Id_Proyecto','=',$request->ID)->delete();
+DB::table('proyect')->where('Id_Proyecto','=',$request->ID)->delete();
 $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->get();
 return view('pages.project_info',['consulta'=>$consulta]);
 }
@@ -61,23 +61,26 @@ return view('pages.project_info',['consulta'=>$consulta]);
       $insert=DB::table('phases')->insert([
         'Id_Fk_proyect'=>$request->Id_P,
         'P_Team_Involved'=>"$request->P_Team_Involved",
+        'P_Materials_Used'=>"$request->P_Materials",
         'Yes_hours'=>"$request->Yes_hours",
         'Yes_P_approved'=>"$request->Yes_P_approved",
         'No_P_defects'=>"$request->No_P_defects",
         'No_P_Repairs'=>"$request->No_P_Repairs",
         'No_P_Date'=>"$request->No_P_Date",
         'F_Team_Involved'=>"$request->F_Team_Involved",
-        'F_Materials_Used'=>"$request->F_Materials_Used",
-        'F_Defects'=>"$request->F_Defects",
-        'F_Repairs'=>"$request->F_Repairs",
-        'F_Duration'=>"$request->F_Duration_Time",
-        'F_Approved'=>"$request->F_Approved_By",
+        'F_Materials_Used'=>"$request->F_Materials",
+        'F_Yes_hours'=>"$request->F_Yes_hours",
+        'F_Yes_P_approved'=>"$request->F_Yes_P_approved",
+        'F_No_P_defects'=>"$request->F_No_P_defects",
+        'F_No_P_Repairs'=>"$request->F_No_P_Repairs",
+        'F_No_P_Date'=>"$request->F_No_P_Date",
         'A_Team_Involved'=>"$request->A_Team_Involved",
-        'A_Materials_Used'=>"$request->A_Materials_Used",
-        'A_Defects'=>"$request->A_Defects",
-        'A_Repairs'=>"$request->A_Repairs",
-        'A_Duration'=>"$request->A_Duration_Time",
-        'A_Approved'=>"$request->A_Approved_By",
+        'A_Materials_Used'=>"$request->A_Materials",
+        'A_Yes_P_hours'=>"$request->A_Yes_hours",
+        'A_Yes_P_approved'=>"$request->A_Yes_P_approved",
+        'A_No_P_defects'=>"$request->A_No_P_defects",
+        'A_No_P_Repairs'=>"$request->A_No_P_Repairs",
+        'A_No_P_Date'=>"$request->A_No_P_Date",
         'time'=>"$fech"
       ]);
       DB::table('proyect')->where('Id_Proyecto',$request->Id_P)->update(['estado'=>2]);
@@ -101,23 +104,26 @@ return view('pages.project_info',['consulta'=>$consulta]);
       ->where('Id_Fk_proyect',$request->Id_P)
       ->update([
         'P_Team_Involved'=>"$request->P_Team_Involved",
+        'P_Materials_Used'=>"$request->P_Materials",
         'Yes_hours'=>"$request->Yes_hours",
         'Yes_P_approved'=>"$request->Yes_P_approved",
         'No_P_defects'=>"$request->No_P_defects",
         'No_P_Repairs'=>"$request->No_P_Repairs",
         'No_P_Date'=>"$request->No_P_Date",
         'F_Team_Involved'=>"$request->F_Team_Involved",
-        'F_Materials_Used'=>"$request->F_Materials_Used",
-        'F_Defects'=>"$request->F_Defects",
-        'F_Repairs'=>"$request->F_Repairs",
-        'F_Duration'=>"$request->F_Duration_Time",
-        'F_Approved'=>"$request->F_Approved_By",
+        'F_Materials_Used'=>"$request->F_Materials",
+        'F_Yes_hours'=>"$request->F_Yes_hours",
+        'F_Yes_P_approved'=>"$request->F_Yes_P_approved",
+        'F_No_P_defects'=>"$request->F_No_P_defects",
+        'F_No_P_Repairs'=>"$request->F_No_P_Repairs",
+        'F_No_P_Date'=>"$request->F_No_P_Date",
         'A_Team_Involved'=>"$request->A_Team_Involved",
-        'A_Materials_Used'=>"$request->A_Materials_Used",
-        'A_Defects'=>"$request->A_Defects",
-        'A_Repairs'=>"$request->A_Repairs",
-        'A_Duration'=>"$request->A_Duration_Time",
-        'A_Approved'=>"$request->A_Approved_By"
+        'A_Materials_Used'=>"$request->A_Materials",
+        'A_Yes_P_hours'=>"$request->A_Yes_P_hours",
+        'A_Yes_P_approved'=>"$request->A_Yes_P_approved",
+        'A_No_P_defects'=>"$request->A_No_P_defects",
+        'A_No_P_Repairs'=>"$request->A_No_P_Repairs",
+        'A_No_P_Date'=>"$request->A_No_P_Date"
       ]);
       $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->orWhere('estado','=',2)->get();
       return view('pages.production_project',['consulta'=>$consulta]);

@@ -14,6 +14,31 @@ Appadmin.controller('ProjectInfo',function($scope,$http){
     }
   }
 
+  $scope.F_yesForm=true
+  $scope.F_noForm=true
+  $scope.F_radioform =function(i){
+    console.log(i)
+    if (i=="yes") {
+      $scope.F_yesForm=false
+      $scope.F_noForm=true
+    }else{
+      $scope.F_yesForm=true
+      $scope.F_noForm=false
+    }
+  }
+
+  $scope.A_yesForm=true
+  $scope.A_noForm=true
+  $scope.A_radioform =function(i){
+    console.log(i)
+    if (i=="yes") {
+      $scope.A_yesForm=false
+      $scope.A_noForm=true
+    }else{
+      $scope.A_yesForm=true
+      $scope.A_noForm=false
+    }
+  }
   $scope.arrary=[];
   $scope.ErrorView=function(id){
     $.ajax({
