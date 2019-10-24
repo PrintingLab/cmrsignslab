@@ -96,7 +96,7 @@
               </div>
               <div ng-hide="yesForm">
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="Yes_hours" type="text"  value="{{$resultproducto[0]->Yes_hours}}">
                   </div>
@@ -123,9 +123,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="No_P_Date" type="text"  value="{{$resultproducto[0]->No_P_Date}}">
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="No_P_approved" type="text" value="{{$resultproducto[0]->P_No_approved}}"/>
                   </div>
                 </div>
               </div>
@@ -142,7 +148,7 @@
                 <label class="col-sm-2 col-form-label">{{ __('Materials Used') }}</label>
                 <div class="col-sm-7">
                   <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                    <input class="form-control" name="F_Materials Used" type="text"  value="{{$resultproducto[0]->F_Materials_Used}}">
+                    <input class="form-control" name="F_Materials" type="text"  value="{{$resultproducto[0]->F_Materials_Used}}">
                   </div>
                 </div>
               </div>
@@ -169,15 +175,15 @@
               </div>
               <div ng-hide="F_yesForm">
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="F_Yes_P_hours" type="text"  value="{{$resultproducto[0]->F_Yes_hours}}">
+                    <input class="form-control" name="F_Yes_hours" type="text"  value="{{$resultproducto[0]->F_Yes_hours}}">
                   </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
                   <div class="col-sm-7">
-                    <input class="form-control" name="F_Yes_P_approved" type="text"  value="{{$resultproducto[0]->F_Yes_P_approved}}">
+                    <input class="form-control" name="F_Yes_approved" type="text"  value="{{$resultproducto[0]->F_Yes_P_approved}}">
                   </div>
                 </div>
               </div>
@@ -196,9 +202,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="F_No_P_Date" type="text"  value="{{$resultproducto[0]->F_No_P_Date}}">
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_No_approved" type="text"  value="{{$resultproducto[0]->F_No_approved}}"/>
                   </div>
                 </div>
               </div>
@@ -242,7 +254,7 @@
               </div>
               <div ng-hide="A_yesForm">
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="A_Yes_P_hours" type="text"  value="{{$resultproducto[0]->A_Yes_P_hours}}">
                   </div>
@@ -269,9 +281,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="A_No_P_Date" type="text"  value="{{$resultproducto[0]->A_No_P_Date}}">
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_No_approved" type="text"  value="{{$resultproducto[0]->A_No_approved}}"/>
                   </div>
                 </div>
               </div>

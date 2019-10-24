@@ -67,6 +67,7 @@ return view('pages.project_info',['consulta'=>$consulta]);
         'No_P_defects'=>"$request->No_P_defects",
         'No_P_Repairs'=>"$request->No_P_Repairs",
         'No_P_Date'=>"$request->No_P_Date",
+        'P_No_approved'=>"$request->No_P_approved",
         'F_Team_Involved'=>"$request->F_Team_Involved",
         'F_Materials_Used'=>"$request->F_Materials",
         'F_Yes_hours'=>"$request->F_Yes_hours",
@@ -74,6 +75,7 @@ return view('pages.project_info',['consulta'=>$consulta]);
         'F_No_P_defects'=>"$request->F_No_P_defects",
         'F_No_P_Repairs'=>"$request->F_No_P_Repairs",
         'F_No_P_Date'=>"$request->F_No_P_Date",
+        'F_No_approved'=>"$request->F_No_approved",
         'A_Team_Involved'=>"$request->A_Team_Involved",
         'A_Materials_Used'=>"$request->A_Materials",
         'A_Yes_P_hours'=>"$request->A_Yes_hours",
@@ -81,6 +83,7 @@ return view('pages.project_info',['consulta'=>$consulta]);
         'A_No_P_defects'=>"$request->A_No_P_defects",
         'A_No_P_Repairs'=>"$request->A_No_P_Repairs",
         'A_No_P_Date'=>"$request->A_No_P_Date",
+        'A_No_approved'=>"$request->A_No_approved",
         'time'=>"$fech"
       ]);
       DB::table('proyect')->where('Id_Proyecto',$request->Id_P)->update(['estado'=>2]);
@@ -110,19 +113,22 @@ return view('pages.project_info',['consulta'=>$consulta]);
         'No_P_defects'=>"$request->No_P_defects",
         'No_P_Repairs'=>"$request->No_P_Repairs",
         'No_P_Date'=>"$request->No_P_Date",
+        'P_No_approved'=>"$request->No_P_approved",
         'F_Team_Involved'=>"$request->F_Team_Involved",
         'F_Materials_Used'=>"$request->F_Materials",
         'F_Yes_hours'=>"$request->F_Yes_hours",
-        'F_Yes_P_approved'=>"$request->F_Yes_P_approved",
+        'F_Yes_P_approved'=>"$request->F_Yes_approved",
         'F_No_P_defects'=>"$request->F_No_P_defects",
         'F_No_P_Repairs'=>"$request->F_No_P_Repairs",
         'F_No_P_Date'=>"$request->F_No_P_Date",
+        'F_No_approved'=>"$request->F_No_approved",
         'A_Team_Involved'=>"$request->A_Team_Involved",
         'A_Materials_Used'=>"$request->A_Materials",
         'A_Yes_P_hours'=>"$request->A_Yes_P_hours",
         'A_Yes_P_approved'=>"$request->A_Yes_P_approved",
         'A_No_P_defects'=>"$request->A_No_P_defects",
         'A_No_P_Repairs'=>"$request->A_No_P_Repairs",
+        'A_No_approved'=>"$request->A_No_approved",
         'A_No_P_Date'=>"$request->A_No_P_Date"
       ]);
       $consulta=DB::table('proyect')->select('Id_Proyecto','Customer','Product','employee','Fecha_I','Fecha_F','estado')->where('estado','=',1)->orWhere('estado','=',2)->get();
@@ -159,7 +165,7 @@ return view('pages.project_info',['consulta'=>$consulta]);
       DB::table('proyect')->where('Id_Proyecto',$request->Id_P)->update(['estado'=>3]);
       $consulta=DB::table('proyect')
       ->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
-      ->select('Id_Proyecto','No_P_defects','Product','Customer','employee','Fecha_F','estado')
+      ->select('Id_Proyecto','No_P_defects','F_No_P_defects','A_No_P_defects','Product','Customer','employee','Fecha_F','estado')
       ->Where('estado','=',3)
       ->where(function ($query){
         $query->where('No_P_defects','=','""')
@@ -171,7 +177,7 @@ return view('pages.project_info',['consulta'=>$consulta]);
     public function Paso3_Approved(){
       $consulta=DB::table('proyect')
       ->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
-      ->select('Id_Proyecto','No_P_defects','Product','Customer','employee','Fecha_F','estado')
+      ->select('Id_Proyecto','No_P_defects','F_No_P_defects','A_No_P_defects','Product','Customer','employee','Fecha_F','estado')
       ->Where('estado','=',3)
       ->where(function ($query){
         $query->where('No_P_defects','=','""')
@@ -205,7 +211,7 @@ return view('pages.project_info',['consulta'=>$consulta]);
     }
 
     public function ErrorModal(Request $request){
-      $consulta_general=DB::table('phases')->where('Id_Fk_proyect','=',$request->id)->get();
+      $consulta_general=DB::table('phases')->select('*')->where('Id_Fk_proyect','=',$request->id)->get();
       $consulta_g=json_decode($consulta_general);
       return ($consulta_g);
     }
@@ -217,25 +223,22 @@ return view('pages.project_info',['consulta'=>$consulta]);
     public function ConsultaFecha(Request $request){
       $respuest1=$request->fecha1;
       $respuest2=$request->fecha2;
-      $consulta=DB::table('proyect')->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
-      ->select('Id_Proyecto','Customer','Product','No_P_defects','No_P_Repairs','No_P_Date')
-      ->Where('estado','=',3)
-      ->whereBetween('Fecha_I',[$respuest1,$respuest2])
-      ->get();
-      $respuest=json_decode($consulta);
-      return($respuest);
+      $consulta1=DB::select('call InformeErrorP("'.$respuest1.'","'.$respuest2.'")');
+      $consulta2=DB::select('call InformeErrorF("'.$respuest1.'","'.$respuest2.'")');
+      $consulta3=DB::select('call InformeErrorA("'.$respuest1.'","'.$respuest2.'")');
+      $consulta=['errorP'=>$consulta1,'errorF'=>$consulta2,'errorA'=>$consulta3];
+      return($consulta);
     }
 
     public function ViewPdfError(Request $request){
       $respuest1=$request->fecha1;
       $respuest2=$request->fecha2;
-      $consulta=DB::table('proyect')->join('phases','proyect.Id_Proyecto','=','phases.Id_Fk_proyect')
-      ->select('Id_Proyecto','Customer','Product','No_P_defects','No_P_Repairs','No_P_Date')
-      ->Where('estado','=',3)
-      ->whereBetween('Fecha_I',[$respuest1,$respuest2])
-      ->get();
-      $respuesta=json_decode($consulta);
-      $pdf = \PDF::loadView('pages.pdf_error',compact('respuesta','respuest1','respuest2'));
+      $consulta1=DB::select('call InformeErrorP("'.$respuest1.'","'.$respuest2.'")');
+      $consulta2=DB::select('call InformeErrorF("'.$respuest1.'","'.$respuest2.'")');
+      $consulta3=DB::select('call InformeErrorA("'.$respuest1.'","'.$respuest2.'")');
+      $consulta=['errorP'=>$consulta1,'errorF'=>$consulta2,'errorA'=>$consulta3];
+      $pdf = \PDF::loadView('pages.pdf_error',compact('consulta','respuest1','respuest2'));
+      //return $pdf->stream('pages.pdf_error.pdf');
       return $pdf->download('pages.pdf_error.pdf');
     }
 

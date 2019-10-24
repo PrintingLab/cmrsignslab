@@ -96,7 +96,7 @@
               </div>
               <div ng-hide="yesForm">
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours)') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="Yes_P_hours" type="text"  />
                   </div>
@@ -123,9 +123,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="No_P_Date" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="No_P_approved" type="text"  />
                   </div>
                 </div>
               </div>
@@ -146,7 +152,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Passed Quality Control') }}</label>
                 <div class="col-sm-7">
@@ -197,15 +202,18 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="F_No_P_Date" type="text"  />
                   </div>
                 </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="F_No_approved" type="text"  />
+                  </div>
+                </div>
               </div>
-
-
-
 
               <h3>Assembling</h3>
               <div class="row">
@@ -224,7 +232,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row">
                 <label class="col-sm-2 col-form-label">{{ __('Passed Quality Control') }}</label>
                 <div class="col-sm-7">
@@ -275,9 +282,15 @@
                   </div>
                 </div>
                 <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Date') }}</label>
+                  <label class="col-sm-2 col-form-label">{{ __('Duration Time (hours/days)') }}</label>
                   <div class="col-sm-7">
                     <input class="form-control" name="A_No_P_Date" type="text"  />
+                  </div>
+                </div>
+                <div class="row">
+                  <label class="col-sm-2 col-form-label">{{ __('Approved By') }}</label>
+                  <div class="col-sm-7">
+                    <input class="form-control" name="A_No_approved" type="text"  />
                   </div>
                 </div>
               </div>
@@ -286,7 +299,6 @@
             <div class="card-footer ml-auto mr-auto">
               <button type="submit" class="btn btn-primary">{{ __('Add Specification') }}</button>
             </div>
-
           </div>
         </form>
       </div>

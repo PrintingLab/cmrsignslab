@@ -6,7 +6,7 @@
       <div class="col-md-12">
         <div class="col-md-3">
           <a href="informe_errores">
-          <button class="btn btn-primary btn-block" >Informes</button>
+            <button class="btn btn-primary btn-block" >Informes</button>
           </a>
         </div>
       </div>
@@ -43,7 +43,7 @@
                     <td>
                       <a href="{{route('view_final_details',$array->Id_Proyecto)}}" title="View"><i class="material-icons">remove_red_eye</i></a>
                       <a href="{{route('pdf_view',$array->Id_Proyecto)}}" title="Print"><i class="material-icons">print</i></a>
-                      @if($array->No_P_defects!="")
+                      @if($array->No_P_defects!="" || $array->F_No_P_defects!=""  || $array->A_No_P_defects!="")
                       <a href="#!" title="Error" ng-click="ErrorView({{$array->Id_Proyecto}})" ><i class="material-icons">error_outline</i></a>
                       @endif
                     </td>
@@ -57,6 +57,7 @@
       </div>
     </div>
   </div>
+
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -67,22 +68,86 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <label class="col-sm-5 col-form-label">{{ __('Identified defects/Issues') }}</label>
-            <div class="col-sm-7">
-              <input class="form-control" ng-model="No_P_defects" type="text" placeholder="{{ __('Customer Name') }}" />
+          <div ng-hide="production_M_model">
+            <h3>Production</h3>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Identified defects/Issues') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_P_defects" type="text" />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_P_Repairs" type="text" />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Date') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_P_Date" type="text" />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Approved By') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_P_approved" type="text" />
+              </div>
             </div>
           </div>
-          <div class="row">
-            <label class="col-sm-5 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
-            <div class="col-sm-7">
-              <input class="form-control" ng-model="No_P_Repairs" type="text" placeholder="{{ __('Customer Name') }}" />
+          <div ng-hide="fabrication_M_model">
+            <h3>Fabrication</h3>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Identified defects/Issues') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_f_defects_f" type="text"  />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_F_Repairs" type="text" />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Date') }}</label>
+
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_F_Date_F" type="text" />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Approved By') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_F_approved" type="text"  />
+              </div>
             </div>
           </div>
-          <div class="row">
-            <label class="col-sm-5 col-form-label">{{ __('Date') }}</label>
-            <div class="col-sm-7">
-              <input class="form-control" ng-model="No_P_Date" type="text" placeholder="{{ __('4 Hours') }}" />
+          <div ng-hide="assembling_M_model">
+            <h3>Assembling</h3>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Identified defects/Issues') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_A_defects" type="text"  />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Necessary Repairs and Improvements') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_A_Repairs" type="text"  />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Date') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_A_Date" type="text"  />
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-5 col-form-label">{{ __('Approved By') }}</label>
+              <div class="col-sm-7">
+                <input class="form-control" ng-model="M_No_A_approved" type="text"  />
+              </div>
             </div>
           </div>
         </div>

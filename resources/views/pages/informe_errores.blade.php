@@ -30,53 +30,157 @@
                 <div class="col-sm-1">
                   <a href="#!" ng-click="ConsultaFecha()"><i class="material-icons" style="font-size: 40px;">assignment</i></a>
                 </div>
-              </div>
-              <div class="table-responsive">
-                <table class="table">
-                  <thead class=" text-primary">
-                    <th>
-                      #
-                    </th>
-                    <th>
-                      Customer Name
-                    </th>
-                    <th>
-                      Product
-                    </th>
-                    <th>
-                      Identified defects/Issues
-                    </th>
-                    <th>
-                      Necessary Repairs and Improvements
-                    </th>
-                    <th>
-                      Date(hours)
-                    </th>
-                  </thead>
-                  <tbody>
-                    <tr ng-repeat="data in arrayFecha">
-                      <td>@{{$index +1}}</td>
-                      <td>@{{data.Customer}}</td>
-                      <td>@{{data.Product}}</td>
-                      <td>@{{data.No_P_defects}}</td>
-                      <td>@{{data.No_P_Repairs}}</td>
-                      <td>@{{data.No_P_Date}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <div class="col-sm-12" style="text-align: end;">
+                <div class="col-sm-1" >
                   <button type="submit" class="btn btn-primary"><i class="material-icons" style="font-size: 40px;">print</i></button>
+                </div>
               </div>
-
             </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Report Production</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    #
+                  </th>
+                  <th>
+                    Customer Name
+                  </th>
+                  <th>
+                    Product
+                  </th>
+                  <th>
+                    Production Identified defects/Issues
+                  </th>
+                  <th>
+                    Production Necessary Repairs and Improvements
+                  </th>
+                  <th>
+                    Production Date(hours)
+                  </th>
+                  <th>
+                    Production Approved By
+                  </th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="data in arrayP">
+                    <td>@{{$index +1}}</td>
+                    <td>@{{data.Customer}}</td>
+                    <td>@{{data.Product}}</td>
+                    <td>@{{data.No_P_defects}}</td>
+                    <td>@{{data.No_P_Repairs}}</td>
+                    <td>@{{data.No_P_Date}}</td>
+                    <td>@{{data.P_No_approved}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Report Fabrication</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    #
+                  </th>
+                  <th>
+                    Customer Name
+                  </th>
+                  <th>
+                    Product
+                  </th>
+                  <th>
+                    Fabrication Identified defects/Issues
+                  </th>
+                  <th>
+                    Fabrication Necessary Repairs and Improvements
+                  </th>
+                  <th>
+                    Fabrication Date(hours)
+                  </th>
+                  <th>
+                    Fabrication Approved By
+                  </th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="data in arrayF">
+                    <td>@{{$index +1}}</td>
+                    <td>@{{data.Customer}}</td>
+                    <td>@{{data.Product}}</td>
+                    <td>@{{data.F_No_P_defects}}</td>
+                    <td>@{{data.F_No_P_Repairs}}</td>
+                    <td>@{{data.F_No_P_Date}}</td>
+                    <td>@{{data.F_No_approved}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Report Assembling</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class=" text-primary">
+                  <th>
+                    #
+                  </th>
+                  <th>
+                    Customer Name
+                  </th>
+                  <th>
+                    Product
+                  </th>
+                  <th>
+                    Assembling Identified defects/Issues
+                  </th>
+                  <th>
+                    Assembling Necessary Repairs and Improvements
+                  </th>
+                  <th>
+                    Assembling Date(hours)
+                  </th>
+                  <th>
+                    Assembling Approved By
+                  </th>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="data in arrayA">
+                    <td>@{{$index +1}}</td>
+                    <td>@{{data.Customer}}</td>
+                    <td>@{{data.Product}}</td>
+                    <td>@{{data.A_No_P_defects}}</td>
+                    <td>@{{data.A_No_P_Repairs}}</td>
+                    <td>@{{data.A_No_P_Date}}</td>
+                    <td>@{{data.A_No_approved}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 @endsection
 @section('scripts')

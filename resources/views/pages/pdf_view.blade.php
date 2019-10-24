@@ -31,26 +31,32 @@
         <p><strong>Due Date : </strong>{{$consulta_P[0]->Fecha_F}}</p>
       </div>
     </div>
+
     @if ($consulta_PH[0]->P_Team_Involved !="" or $consulta_PH[0]->Yes_hours !="" or $consulta_PH[0]->Yes_P_approved !="" or $consulta_PH[0]->No_P_defects !="" or $consulta_PH[0]->No_P_Repairs !="" or $consulta_PH[0]->No_P_Date !="")
     <div class="row">
-      <h4><strong>Production</strong></h4>
-    </div>
-    <div class="row">
-      <div class="col-xs-3">
+      <h4><strong>Production: </strong></h4>
+      <div class="col-xs-5">
         <p> <strong>Team Involved: </strong>{{$consulta_PH[0]->P_Team_Involved}}</p>
       </div>
-      @if($consulta_PH[0]->Yes_hours !="" or $consulta_PH[0]->Yes_P_approved !="")
-      <div class="col-xs-2">
+      <div class="col-xs-5">
+        <p> <strong>Materials Used: </strong>{{$consulta_PH[0]->P_Materials_Used}}</p>
+      </div>
+    </div>
+    @if($consulta_PH[0]->Yes_hours !="" or $consulta_PH[0]->Yes_P_approved !="")
+    <div class="row">
+      <div class="col-xs-4">
         <p> <strong>Passed Quality Control : </strong> </p> <span>YES</span>
       </div>
-      <div class="col-xs-2">
+      <div class="col-xs-4">
         <p><strong>Duration Time (hours): </strong>{{$consulta_PH[0]->Yes_hours}}</p>
       </div>
-      <div class="col-xs-3">
+      <div class="col-xs-4">
         <p><strong>Approved By: </strong>{{$consulta_PH[0]->Yes_P_approved}}</p>
       </div>
-      @endif
-      @if($consulta_PH[0]->No_P_defects !="" or $consulta_PH[0]->No_P_Repairs !="" or $consulta_PH[0]->No_P_Date)
+    </div>
+    @endif
+    @if($consulta_PH[0]->No_P_defects !="" or $consulta_PH[0]->No_P_Repairs !="" or $consulta_PH[0]->No_P_Date)
+    <div class="row">
       <div class="col-xs-2">
         <p> <strong>Passed Quality Control: </strong> </p> <span>No</span>
       </div>
@@ -63,81 +69,99 @@
       <div class="col-xs-2">
         <p> <strong>Date: </strong>{{$consulta_PH[0]->No_P_Date}}</p>
       </div>
-      @endif
+      <div class="col-xs-2">
+        <p> <strong>Approved By: </strong>{{$consulta_PH[0]->P_No_approved}}</p>
+      </div>
     </div>
     @endif
-    @if($consulta_PH[0]->F_Team_Involved !="" or $consulta_PH[0]->F_Materials_Used !="" or $consulta_PH[0]->F_Defects !="" or $consulta_PH[0]->F_Repairs !="" or $consulta_PH[0]->F_Duration !="" or $consulta_PH[0]->F_Approved)
+    @endif
+
+    @if($consulta_PH[0]->F_Team_Involved !="" or $consulta_PH[0]->F_Materials_Used !="")
     <div class="row">
-      <h4><strong>Fabrication</strong></h4>
-    </div>
-    <div class="row">
+      <h4><strong>Fabrication: </strong></h4>
       <div class="col-xs-4">
         <p> <strong>Team Involved: </strong>{{$consulta_PH[0]->F_Team_Involved}}</p>
       </div>
       <div class="col-xs-4">
         <p> <strong>Materials Used: </strong>{{$consulta_PH[0]->F_Materials_Used}}</p>
       </div>
-      <div class="col-xs-3">
-        <p> <strong>Identified Defects/ Issues: </strong>{{$consulta_PH[0]->F_Defects}}</p>
-      </div>
     </div>
+    @if($consulta_PH[0]->F_Yes_hours !="" or $consulta_PH[0]->F_Yes_P_approved !="")
     <div class="row">
       <div class="col-xs-4">
-        <p> <strong>Necessary Repairs/Improvements: </strong>{{$consulta_PH[0]->F_Repairs}}</p>
+        <p> <strong>Passed Quality Control : </strong> </p> <span>YES</span>
       </div>
       <div class="col-xs-4">
-        <p> <strong>Duration Time(hours): </strong>{{$consulta_PH[0]->F_Duration}}</p>
+        <p><strong>Duration Time (hours): </strong>{{$consulta_PH[0]->F_Yes_hours}}</p>
       </div>
-      <div class="col-xs-3">
-        <p> <strong>Approved by: </strong>{{$consulta_PH[0]->F_Approved}}</p>
+      <div class="col-xs-4">
+        <p><strong>Approved By: </strong>{{$consulta_PH[0]->F_Yes_P_approved}}</p>
       </div>
     </div>
     @endif
-    @if($consulta_PH[0]->A_Team_Involved !="" or $consulta_PH[0]->A_Materials_Used !="" or $consulta_PH[0]->A_Defects !="" or $consulta_PH[0]->A_Repairs !="" or $consulta_PH[0]->A_Duration !="" or $consulta_PH[0]->A_Approved)
+    @if($consulta_PH[0]->F_No_P_defects !="" or $consulta_PH[0]->F_No_P_Repairs !="" or $consulta_PH[0]->F_No_P_Date)
     <div class="row">
-      <h4><strong>Assembling</strong></h4>
+      <div class="col-xs-2">
+        <p> <strong>Passed Quality Control: </strong> </p> <span>No</span>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Identified defects/Issues: </strong>{{$consulta_PH[0]->F_No_P_defects}}</p>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Repairs and Improvements: </strong>{{$consulta_PH[0]->F_No_P_Repairs}}</p>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Date: </strong>{{$consulta_PH[0]->F_No_P_Date}}</p>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Approved By: </strong>{{$consulta_PH[0]->F_No_approved}}</p>
+      </div>
     </div>
+    @endif
+    @endif
+    @if($consulta_PH[0]->A_Team_Involved !="" or $consulta_PH[0]->A_Materials_Used !="")
     <div class="row">
+      <h4><strong>Fabrication: </strong></h4>
       <div class="col-xs-4">
         <p> <strong>Team Involved: </strong>{{$consulta_PH[0]->A_Team_Involved}}</p>
       </div>
       <div class="col-xs-4">
         <p> <strong>Materials Used: </strong>{{$consulta_PH[0]->A_Materials_Used}}</p>
       </div>
-      <div class="col-xs-3">
-        <p> <strong>Identified Defects/ Issues: </strong>{{$consulta_PH[0]->A_Defects}}</p>
-      </div>
     </div>
+    @if($consulta_PH[0]->A_Yes_P_hours !="" or $consulta_PH[0]->A_Yes_P_approved !="")
     <div class="row">
       <div class="col-xs-4">
-        <p> <strong>Necessary Repairs/Improvements: </strong>{{$consulta_PH[0]->A_Repairs}}</p>
+        <p> <strong>Passed Quality Control : </strong> </p> <span>YES</span>
       </div>
       <div class="col-xs-4">
-        <p> <strong>Duration Time(hours): </strong>{{$consulta_PH[0]->A_Duration}}</p>
+        <p><strong>Duration Time (hours): </strong>{{$consulta_PH[0]->A_Yes_P_hours}}</p>
       </div>
-      <div class="col-xs-3">
-        <p> <strong>Approved by: </strong>{{$consulta_PH[0]->A_Approved}}</p>
+      <div class="col-xs-4">
+        <p><strong>Approved By: </strong>{{$consulta_PH[0]->A_Yes_P_approved}}</p>
       </div>
     </div>
     @endif
-
+    @if($consulta_PH[0]->A_No_P_defects !="" or $consulta_PH[0]->A_No_P_Repairs !="" or $consulta_PH[0]->A_No_approved)
     <div class="row">
-      <h4><strong>Quality Control Approval</strong></h4>
-    </div>
-    <div class="row">
-      <div class="col-xs-12">
-        <p> <strong>Notes: </strong>{{$consulta_A[0]->notas}}</p>
+      <div class="col-xs-2">
+        <p> <strong>Passed Quality Control: </strong> </p> <span>No</span>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Identified defects/Issues: </strong>{{$consulta_PH[0]->A_No_P_defects}}</p>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Repairs and Improvements: </strong>{{$consulta_PH[0]->A_No_P_Repairs}}</p>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Date: </strong>{{$consulta_PH[0]->A_No_P_Date}}</p>
+      </div>
+      <div class="col-xs-2">
+        <p> <strong>Approved By: </strong>{{$consulta_PH[0]->A_No_approved}}</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-xs-6">
-        <p> <strong>Aproved by: </strong>{{$consulta_A[0]->Name}}</p>
-      </div>
-      <div class="col-xs-6">
-        <p> <strong>Date: </strong>{{$consulta_A[0]->Date}}</p>
-      </div>
-    </div>
-
+    @endif
+    @endif
   </div>
 </body>
 </html>
