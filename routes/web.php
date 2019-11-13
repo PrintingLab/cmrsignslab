@@ -42,7 +42,13 @@ Route::group(['middleware' => 'auth'], function () {
   Route::get('informe_errores','InspectionChecklist@InformeError');
   Route::post('ConsultaFecha','InspectionChecklist@ConsultaFecha');
   Route::post('pdf_error','InspectionChecklist@ViewPdfError')->name('pdf_error');
-Route::get('delete_project/{ID}','InspectionChecklist@DeletProject')->name('delete_project');
+  Route::get('delete_project/{ID}','InspectionChecklist@DeletProject')->name('delete_project');
+
+  Route::get('signage','FormSignsCars@ViewSings')->name('signage');
+  Route::post('pdf_form_sign','FormSignsCars@PDFSings')->name('pdf_form_sign');
+  Route::get('car_wrap','FormSignsCars@ViewCar')->name('car_wrap');
+  Route::post('pdf_form_car','FormSignsCars@PDFCar')->name('pdf_form_car');
+
   //ejemplo
   /*
   Route::get('table-list', function () { return view('pages.table_list');	})->name('table');
